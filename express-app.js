@@ -31,7 +31,7 @@ app.get("/tasks/:idNum",(req,res)=>{
 	res.send(task);
 });
 
-app.put("/tasks",(req,res)=>{
+app.put("/task",(req,res)=>{
 	let tasks=taskArray.map((task)=>{
 		if(task.id===req.body.id){
 			return req.body;
@@ -43,7 +43,7 @@ app.put("/tasks",(req,res)=>{
 	res.end();
 });
 
-app.patch("/tasks",(req,res)=>{
+app.patch("/task",(req,res)=>{
 	let tasks=taskArray.map((task)=>{
 		if(task.id===req.body.id){
 			if(task.isComplete!=req.body.isComplete)
@@ -57,7 +57,7 @@ app.patch("/tasks",(req,res)=>{
 	res.end();
 });
 
-app.delete("/tasks",(req,res)=>{
+app.delete("/task",(req,res)=>{
 	const tasks=taskArray.filter((curr)=>{
 		return curr.isComplete==false;
 	});
