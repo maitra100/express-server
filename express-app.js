@@ -1,9 +1,7 @@
 const express=require("express");
 const app=express();
-const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 let taskArray=[];
 let id=0;
