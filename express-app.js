@@ -9,12 +9,12 @@ let id=0;
 app.post("/tasks",(req,res)=>{
 	let newTask={
 		id:id,
-		name:req.body.name,
+		...req.body,
 		isComplete:false
 	};
 	id++;
 	taskArray.push(newTask);
-	res.send(newTask);
+	res.status(201).send(newTask);
 });
 
 app.get("/tasks",(req,res)=>{
@@ -40,11 +40,11 @@ app.put("/task",(req,res)=>{
 			return task;
 	});
 	taskArray=tasks;
-	res.end();
+	res.status(201).end();
 });
 
 app.patch("/task",(req,res)=>{
-	let tasks=taskArray.map((task)=>{
+	const tasks=taskArray.map((task)=>{
 		if(task.id===req.body.id){
 			if(task.isComplete!=req.body.isComplete)
 				task.isComplete=!task.isComplete;
@@ -54,7 +54,7 @@ app.patch("/task",(req,res)=>{
 			return task;
 	});
 	taskArray=tasks;
-	res.end();
+	res.status(201).end();
 });
 
 app.delete("/task",(req,res)=>{
